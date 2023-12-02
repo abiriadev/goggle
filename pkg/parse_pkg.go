@@ -2,11 +2,12 @@ package pkg
 
 import (
 	"fmt"
+	"go/doc"
 	"go/parser"
 	"go/token"
 )
 
-func parse(path string) (Index, error) {
+func Parse(path string) (Index, error) {
 	fs := token.NewFileSet()
 
 	astmap, err := parser.ParseDir(fs, path, nil, parser.ParseComments)
@@ -15,8 +16,14 @@ func parse(path string) (Index, error) {
 		return Index{}, err
 	}
 
-	for f, p := range astmap {
-		fmt.Println(f, p.Name)
+	for pn, p := range astmap {
+		fmt.Println("package:", pn)
+
+		d := doc.New(p, pn, 0)
+
+		for _, f := range d.Funcs {
+			fmt.Println("\t", f.Name)
+		}
 	}
 
 	return Index{}, nil
