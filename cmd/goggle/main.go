@@ -27,7 +27,7 @@ func main() {
 		panic(e)
 	}
 
-	for _, fd := range index.Items {
+	for _, fd := range index.Query(pkg.Query{"bool"}) {
 		fmt.Println(fd.Name, "->", fd.Ret)
 	}
 }
