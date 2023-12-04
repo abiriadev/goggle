@@ -5,6 +5,29 @@ Type-directed search engine like [hoogle](https://github.com/ndmitchell/hoogle) 
 
 ## Query syntax overview
 
+```ebnf
+Type = TypeName [ TypeArgs ] | TypeLit | "(" Type ")" .
+TypeName = identifier | QualifiedIdent .
+TypeArgs = "[" TypeList [ ", "] "]" .
+TypeList = Type { "," Type } .
+TypeLit = ArrayType | StructType | PointerType | FunctionType | InterfaceType | SliceType | MapType | ChannelType
+
+ArrayType = "[" ArrayLength "]" ElementType .
+ArrayLength = Expression .
+ElementType = Type .
+
+SliceType = "[" "]" ElementType .
+
+FunctionType = "func" Signature .
+Signature = Parameters [ Result ]
+Result = Parameters | Type .
+Parameters = "(" [ ParameterList [ "," ] ] ")" .
+ParameterList = ParameterDecl { "," ParameterDecl } .
+ParameterDecl = [ IdentifierList ] [ "... " ] Type .
+
+Query = [ "func" ] [ identifier ] Signature .
+```
+
 ```go
 // normal function definition
 func length(s string) int
