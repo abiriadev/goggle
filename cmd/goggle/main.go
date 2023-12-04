@@ -4,7 +4,8 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/abiriadev/goggle/pkg"
+	"github.com/abiriadev/goggle/pkg/goggle"
+	"github.com/abiriadev/goggle/pkg/query"
 )
 
 func pathArg() string {
@@ -21,13 +22,13 @@ func pathArg() string {
 func main() {
 	f := pathArg()
 
-	index, e := pkg.Parse(f)
+	index, e := goggle.Parse(f)
 
 	if e != nil {
 		panic(e)
 	}
 
-	for _, fd := range index.Query(pkg.Query{"bool"}) {
+	for _, fd := range index.Query(query.Query{"bool"}) {
 		fmt.Println(fd.Name, "->", fd.Ret)
 	}
 }
