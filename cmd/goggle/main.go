@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 
 	"github.com/abiriadev/goggle/pkg"
 )
@@ -20,5 +21,13 @@ func pathArg() string {
 func main() {
 	f := pathArg()
 
-	pkg.Parse(f)
+	index, e := pkg.Parse(f)
+
+	if e != nil {
+		panic(e)
+	}
+
+	for _, fd := range index.Items {
+		fmt.Println(fd.Name, "->", fd.Ret)
+	}
 }

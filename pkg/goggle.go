@@ -1,12 +1,10 @@
 package pkg
 
-import "go/types"
-
 type FuncDef struct {
-	name string
-	ret  types.Type
+	Name string
+	Ret  string
 }
 
 type Index struct {
-	items []FuncDef
+	Items []FuncDef
 }
