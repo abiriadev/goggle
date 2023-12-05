@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/abiriadev/goggle/pkg/goggle"
+	"github.com/abiriadev/goggle/pkg/index"
 	"github.com/abiriadev/goggle/pkg/query"
 	"github.com/chzyer/readline"
 )
@@ -23,7 +23,7 @@ func pathArg() string {
 func main() {
 	f := pathArg()
 
-	index, e := goggle.Parse(f)
+	index, e := index.IndexPackage(f)
 
 	if e != nil {
 		panic(e)
