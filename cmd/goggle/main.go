@@ -40,7 +40,7 @@ func main() {
 		panic(e)
 	}
 
-	for _, fd := range index.Query(q) {
+	for _, fd := range index.Query(*q) {
 		fmt.Println(fd.Name, "->", fd.Ret)
 	}
 }
