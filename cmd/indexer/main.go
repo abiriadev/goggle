@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 
 	"github.com/abiriadev/goggle/pkg/index"
 	"github.com/kr/pretty"
@@ -13,14 +14,16 @@ func main() {
 
 	flag.Parse()
 
-	cfg := &packages.Config{Mode: packages.NeedFiles | packages.NeedSyntax}
-
 	target := flag.Args()
 	if len(target) == 0 {
 		target = append(target, "std")
 	}
 
-	pkgs, err := packages.Load(cfg, target...)
+	pkgs, err := packages.Load(
+		&packages.Config{
+			Mode: packages.NeedName | packages.NeedTypes,
+		},
+		target...)
 	if err != nil {
 		panic(err)
 	}
@@ -31,6 +34,7 @@ func main() {
 	idxes := make([]index.Index, 0)
 	for _, pkg := range pkgs {
 		pretty.Println(pkg)
+		fmt.Println("name:", pkg.Name)
 
 		index, e := index.IndexPackage(".")
 		if e != nil {
