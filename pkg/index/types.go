@@ -67,7 +67,6 @@ func MergeIndex(idxes []Index) Index {
 			})(idxes),
 		),
 	}
-
 }
 
 func (this *FuncDef) String() string {
