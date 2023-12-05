@@ -1,4 +1,4 @@
-package goggle
+package index
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"go/token"
 )
 
-func Parse(path string) (Index, error) {
+func IndexPackage(path string) (Index, error) {
 	fs := token.NewFileSet()
 	astmap, err := parser.ParseDir(fs, path, nil, parser.ParseComments)
 
