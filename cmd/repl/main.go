@@ -14,7 +14,7 @@ func pathArg() string {
 	f := flag.Arg(0)
 
 	if f == "" {
-		panic("provide path to target package")
+		return "index.json"
 	}
 
 	return f
@@ -23,8 +23,7 @@ func pathArg() string {
 func main() {
 	f := pathArg()
 
-	index, e := index.IndexPackage(f)
-
+	index, e := index.Load(f)
 	if e != nil {
 		panic(e)
 	}
@@ -40,8 +39,6 @@ func main() {
 		if e != nil {
 			break
 		}
-
-		// fmt.Println(line)
 
 		qs := line
 
