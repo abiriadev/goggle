@@ -7,18 +7,14 @@ type FuncDef struct {
 }
 
 type Index struct {
-	items []FuncDef
-}
-
-func (index *Index) Items() []FuncDef {
-	return index.items
+	Items []FuncDef
 }
 
 func MergeIndex(idxes []Index) Index {
 	newi := Index{make([]FuncDef, 0)}
 
 	for _, idx := range idxes {
-		newi.items = append(newi.items, idx.items...)
+		newi.Items = append(newi.Items, idx.Items...)
 	}
 
 	return newi
