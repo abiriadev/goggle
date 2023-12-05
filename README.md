@@ -65,3 +65,5 @@ func (s string) int
     -   [ ] Parameter collaping
     -   [ ] Spread syntax
 -   [ ] Levenshtein distance
+
+\*? \_? ?? any? ? ...?

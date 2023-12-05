@@ -3,6 +3,8 @@ package index
 import (
 	"html/template"
 	"strings"
+
+	"github.com/repeale/fp-go"
 )
 
 type FuncDef struct {
@@ -14,18 +16,58 @@ type FuncDef struct {
 	DocLink string
 }
 
+type MethodDef struct {
+	Pkg      string
+	Name     string
+	Receiver string
+	Args     []string
+	Ret      string
+	Summary  string
+	DocLink  string
+}
+
+// The central struct for all kind of indexing and searching
 type Index struct {
-	Items []FuncDef
+	FuncItems   []FuncDef
+	MethodItems []MethodDef
+}
+
+func NewIndex() Index {
+	return Index{make([]FuncDef, 0), make([]MethodDef, 0)}
+}
+
+func ConcatSliceTo[T any](slices [][]T, dest []T) []T {
+	for _, sl := range slices {
+		dest = append(dest, sl...)
+	}
+
+	return dest
+}
+
+func ConcatSlice[T any](slices [][]T) []T {
+	r := make([]T, 0)
+
+	for _, sl := range slices {
+		r = append(r, sl...)
+	}
+
+	return r
 }
 
 func MergeIndex(idxes []Index) Index {
-	newi := Index{make([]FuncDef, 0)}
-
-	for _, idx := range idxes {
-		newi.Items = append(newi.Items, idx.Items...)
+	return Index{
+		FuncItems: ConcatSlice(
+			fp.Map(func(idx Index) []FuncDef {
+				return idx.FuncItems
+			})(idxes),
+		),
+		MethodItems: ConcatSlice(
+			fp.Map(func(idx Index) []MethodDef {
+				return idx.MethodItems
+			})(idxes),
+		),
 	}
 
-	return newi
 }
 
 func (this *FuncDef) String() string {
