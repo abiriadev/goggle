@@ -28,7 +28,19 @@ func main() {
 		panic(e)
 	}
 
-	for _, fd := range index.Query(query.Query{"bool"}) {
+	qs := "() bool"
+
+	qp, e := query.QueryParser()
+	if e != nil {
+		panic(e)
+	}
+
+	q, e := qp.ParseString("", qs)
+	if e != nil {
+		panic(e)
+	}
+
+	for _, fd := range index.Query(q) {
 		fmt.Println(fd.Name, "->", fd.Ret)
 	}
 }
