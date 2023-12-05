@@ -53,7 +53,7 @@ func main() {
 		}
 
 		for _, fd := range index.Query(*q) {
-			fmt.Println(fd.Name, "->", fd.Ret)
+			fmt.Println(fd.String())
 		}
 	}
 }

@@ -26,7 +26,9 @@ func MergeIndex(idxes []Index) Index {
 }
 
 func (this *FuncDef) String() string {
-	t := template.Must(template.New("").Parse(`{{.Name}}({{range .Args}}{{.}}, {{end}}) {{.Ret}}`))
+	t := template.Must(
+		template.New("").Parse(`func {{.Name}}({{range .Args}}{{.}}, {{end}}) {{.Ret}}`),
+	)
 	var buf strings.Builder
 	t.Execute(&buf, this)
 	return buf.String()
