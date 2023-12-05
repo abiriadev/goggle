@@ -6,6 +6,7 @@ import (
 	"go/doc"
 	"strings"
 
+	"github.com/abiriadev/goggle/pkg/core"
 	"golang.org/x/tools/go/packages"
 )
 
@@ -28,7 +29,7 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 		return Index{}, nil
 	}
 
-	index := make([]FuncDef, 0)
+	index := make([]core.FuncDef, 0)
 
 	for _, pkg := range pkgs {
 		d, err := doc.NewFromFiles(pkg.Fset, pkg.Syntax, pkg.PkgPath)
@@ -66,7 +67,7 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 				docLinkRoute = strings.TrimPrefix(d.ImportPath, "vendor/")
 			}
 
-			index = append(index, FuncDef{
+			index = append(index, core.FuncDef{
 				Pkg:     d.ImportPath,
 				Name:    f.Name,
 				Args:    args,

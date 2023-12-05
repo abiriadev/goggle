@@ -4,32 +4,14 @@ import (
 	"html/template"
 	"strings"
 
+	"github.com/abiriadev/goggle/pkg/core"
 	"github.com/repeale/fp-go"
 )
 
-type FuncDef struct {
-	Pkg     string
-	Name    string
-	Args    []string
-	Ret     string
-	Summary string
-	DocLink string
-}
-
-type MethodDef struct {
-	Pkg      string
-	Name     string
-	Receiver string
-	Args     []string
-	Ret      string
-	Summary  string
-	DocLink  string
-}
-
 // The central struct for all kind of indexing and searching
 type Index struct {
-	FuncItems   []FuncDef
-	MethodItems []MethodDef
+	FuncItems   []core.FuncDef
+	MethodItems []core.MethodDef
 }
 
 func NewIndex() Index {
