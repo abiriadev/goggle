@@ -14,7 +14,7 @@ func (index *Index) MarshalJsonTo(w io.Writer) error {
 	return json.NewEncoder(w).Encode(index)
 }
 
-func (index *Index) save(filename string) error {
+func (index *Index) Save(filename string) error {
 	w, e := os.Create(filename)
 	if e != nil {
 		return e
