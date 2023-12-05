@@ -6,9 +6,12 @@ import (
 )
 
 type FuncDef struct {
-	Name string
-	Args []string
-	Ret  string
+	Pkg     string
+	Name    string
+	Args    []string
+	Ret     string
+	Summary string
+	DocLink string
 }
 
 type Index struct {

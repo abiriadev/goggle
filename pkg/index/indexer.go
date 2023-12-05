@@ -1,8 +1,10 @@
 package index
 
 import (
+	"fmt"
 	"go/ast"
 	"go/doc"
+	"strings"
 
 	"golang.org/x/tools/go/packages"
 )
@@ -59,13 +61,26 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 				}
 			}
 
+			var docLinkRoute string
+			if docLinkRoute = d.ImportPath; isVendored(d.ImportPath) {
+				docLinkRoute = strings.TrimPrefix(d.ImportPath, "vendor/")
+			}
+
 			index = append(index, FuncDef{
-				Name: f.Name,
-				Args: args,
-				Ret:  v.Name,
+				Pkg:     d.ImportPath,
+				Name:    f.Name,
+				Args:    args,
+				Ret:     v.Name,
+				Summary: f.Doc,
+				DocLink: fmt.Sprintf("https://pkg.go.dev/%s#%s", docLinkRoute, f.Name),
 			})
 		}
 	}
 
 	return Index{index}, nil
+}
+
+func isVendored(importPath string) bool {
+	return strings.HasPrefix(importPath, "vendor/")
+	// || strings.Contains(importPath, "/vendor/")
 }
