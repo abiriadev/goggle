@@ -50,3 +50,18 @@ func (s string) int
 // generics
 [T](s T) int
 ```
+
+## TODO
+
+-   [ ] Generics
+    -   [ ] Constraints
+-   [ ] Portable index file
+-   [ ] Incremental search
+-   [ ] Link to pkg.go.dev
+-   [ ] Brief description
+-   [ ] Query
+    -   [ ] Method
+    -   [ ] Multiple return
+    -   [ ] Parameter collaping
+    -   [ ] Spread syntax
+-   [ ] Levenshtein distance
