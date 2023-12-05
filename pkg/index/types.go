@@ -1,5 +1,10 @@
 package index
 
+import (
+	"html/template"
+	"strings"
+)
+
 type FuncDef struct {
 	Name string
 	Args []string
@@ -18,4 +23,11 @@ func MergeIndex(idxes []Index) Index {
 	}
 
 	return newi
+}
+
+func (this *FuncDef) String() string {
+	t := template.Must(template.New("").Parse(`{{.Name}}({{range .Args}}{{.}}, {{end}}) {{.Ret}}`))
+	var buf strings.Builder
+	t.Execute(&buf, this)
+	return buf.String()
 }
