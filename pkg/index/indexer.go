@@ -15,7 +15,11 @@ func NewIndexer() Indexer {
 
 func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 	pkgs, err := packages.Load(
-		&packages.Config{Mode: packages.NeedName | packages.NeedTypes},
+		&packages.Config{
+			Mode: packages.NeedName |
+				packages.NeedTypes |
+				packages.NeedSyntax,
+		},
 		pkgsToIndex...,
 	)
 	if err != nil {
@@ -27,7 +31,7 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 	for _, pkg := range pkgs {
 		d, err := doc.NewFromFiles(pkg.Fset, pkg.Syntax, pkg.PkgPath)
 		if err != nil {
-			return Index{}, nil
+			continue
 		}
 
 		for _, f := range d.Funcs {
