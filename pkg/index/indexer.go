@@ -75,7 +75,7 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 				Name:    f.Name,
 				Args:    args,
 				Return:  v.Name,
-				Summary: f.Doc,
+				Summary: d.Synopsis(f.Doc),
 				Link:    fmt.Sprintf("https://pkg.go.dev/%s#%s", docLinkRoute, f.Name),
 			})
 		}
