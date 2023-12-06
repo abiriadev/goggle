@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/abiriadev/goggle/pkg/core"
+	"github.com/repeale/fp-go"
 	"golang.org/x/tools/go/packages"
 )
 
@@ -29,7 +30,7 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 		return Index{}, nil
 	}
 
-	index := make([]core.FuncDef, 0)
+	index := NewIndex()
 
 	for _, pkg := range pkgs {
 		d, err := doc.NewFromFiles(pkg.Fset, pkg.Syntax, pkg.PkgPath)
@@ -67,7 +68,7 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 				docLinkRoute = strings.TrimPrefix(d.ImportPath, "vendor/")
 			}
 
-			index = append(index, core.FuncDef{
+			index.FuncItems = append(index.FuncItems, core.FuncDef{
 				Pkg:     d.ImportPath,
 				Name:    f.Name,
 				Args:    args,
@@ -78,7 +79,23 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 		}
 	}
 
-	return Index{index}, nil
+	return index, nil
+}
+
+func analyzeFuncDecl(f *ast.FuncDecl) {
+	// WARN: nilable
+	// name := f.Name.Name
+
+	// WARN: nilable
+	ft := f.Type
+
+	for _, field := range fp.Filter(func(n *ast.Field) bool {
+		return n != nil
+	})(ft.Params.List) {
+		fty := field.Type
+
+		fmt.Println("fty: %T", fty)
+	}
 }
 
 func isVendored(importPath string) bool {
