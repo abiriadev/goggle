@@ -1,15 +1,8 @@
 package core
 
 import (
-	"strings"
-	"text/template"
-
 	"github.com/samber/mo"
 )
-
-type ToSignature interface {
-	Signature() string
-}
 
 type FuncDef struct {
 	Package string   `json:"pkg"`
@@ -18,15 +11,6 @@ type FuncDef struct {
 	Return  string   `json:"ret"`
 	Summary string   `json:"sum"`
 	Link    string   `json:"link"`
-}
-
-func (this *FuncDef) Signature() string {
-	t := template.Must(
-		template.New("").Parse(`func {{.Name}}({{range .Args}}{{.}}, {{end}}) {{.Ret}}`),
-	)
-	var buf strings.Builder
-	t.Execute(&buf, this)
-	return buf.String()
 }
 
 type MethodDef struct {
@@ -42,10 +26,9 @@ type MethodDef struct {
 func (this *FuncDef) ToResult(sim Similarity) ResultItem {
 	return ResultItem{
 		Similarity: sim,
-		// TODO: use proper sig
-		Sig:     this.Signature(),
-		Summary: this.Summary,
-		Link:    this.Link,
+		Sig:        this.Signature(),
+		Summary:    this.Summary,
+		Link:       this.Link,
 	}
 }
 
@@ -56,10 +39,6 @@ type ResultItem struct {
 	Sig        string
 	Summary    string
 	Link       string
-}
-
-func (ri *ResultItem) Signature() string {
-	return ri.Sig
 }
 
 type ResultSet struct {
