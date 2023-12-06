@@ -1,7 +1,9 @@
 package eval
 
 import (
+	"cmp"
 	"reflect"
+	"slices"
 
 	"github.com/abiriadev/goggle/pkg/core"
 	"github.com/abiriadev/goggle/pkg/index"
@@ -19,6 +21,16 @@ func EvaluateMethod(item *core.MethodDef, query query.Query) core.Similarity
 
 func Query(index *index.Index, query query.Query) core.ResultSet {
 	rs := core.NewResultSet()
+
+	for _, item := range index.FuncItems {
+		sim := EvaluateFunc(&item, query)
+
+		rs.Results = append(rs.Results, item.ToResult(sim))
+	}
+
+	slices.SortFunc(rs.Results, func(a, b core.ResultItem) int {
+		return cmp.Compare(a.Similarity, b.Similarity)
+	})
 
 	return rs
 }
