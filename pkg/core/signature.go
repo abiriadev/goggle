@@ -20,3 +20,7 @@ func (f *FuncDef) Signature() string {
 func (ri *ResultItem) Signature() string {
 	return ri.Sig
 }
+
+func (ri *ResultItem) SigWithComment() string {
+	return fmt.Sprintf("%s\t// %s", ri.Sig, ri.Summary)
+}

@@ -50,7 +50,7 @@ func main() {
 		}
 
 		for _, ri := range rs.Results {
-			fmt.Println(ri.Sig)
+			fmt.Println(ri.SigWithComment())
 		}
 	}
 }
