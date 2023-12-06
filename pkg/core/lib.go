@@ -23,9 +23,17 @@ type MethodDef struct {
 	DocLink  string
 }
 
-type Item = mo.Either[FuncDef, MethodDef]
+func (this *FuncDef) ToResult(sim Similarity) ResultItem {
+	return ResultItem{
+		Similarity: sim,
+		// TODO: use proper sig
+		Sig:     this.Name,
+		Summary: this.Summary,
+		Link:    this.DocLink,
+	}
+}
 
-type Similarity float64
+type Item = mo.Either[FuncDef, MethodDef]
 
 type ResultItem struct {
 	Similarity Similarity
