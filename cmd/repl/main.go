@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 
+	"github.com/abiriadev/goggle/pkg/eval"
 	"github.com/abiriadev/goggle/pkg/index"
 	"github.com/abiriadev/goggle/pkg/query"
 	"github.com/chzyer/readline"
@@ -52,7 +53,7 @@ func main() {
 			fmt.Println(e)
 		}
 
-		for _, fd := range index.Query(*q) {
+		for _, fd := range eval.Query(*q) {
 			fmt.Println(fd.String())
 		}
 	}
