@@ -96,7 +96,7 @@ func analyzeFuncDecl(f *ast.FuncDecl) {
 	})(ft.Params.List) {
 		fty := field.Type
 
-		fmt.Println("fty: %T", fty)
+		fmt.Printf("fty: %T\n", fty)
 	}
 }
 

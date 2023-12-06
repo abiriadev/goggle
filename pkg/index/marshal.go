@@ -14,7 +14,7 @@ func (index *Index) MarshalJsonTo(w io.Writer) error {
 	return json.NewEncoder(w).Encode(index)
 }
 
-func (index *Index) Save(filename string) error {
+func (index *Index) SaveJson(filename string) error {
 	w, e := os.Create(filename)
 	if e != nil {
 		return e
@@ -33,7 +33,7 @@ func UnmarshalJsonFrom(r io.Reader) (Index, error) {
 	return idx, json.NewDecoder(r).Decode(&idx)
 }
 
-func Load(filename string) (Index, error) {
+func LoadJson(filename string) (Index, error) {
 	r, e := os.Open(filename)
 	if e != nil {
 		return Index{}, e
