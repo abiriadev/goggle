@@ -23,12 +23,12 @@ func (index *Index) Save(filename string) error {
 	return index.MarshalJsonTo(w)
 }
 
-func MarshalJson(data []byte) (Index, error) {
+func UnmarshalJson(data []byte) (Index, error) {
 	var idx Index
 	return idx, json.Unmarshal(data, &idx)
 }
 
-func MarshalJsonFrom(r io.Reader) (Index, error) {
+func UnmarshalJsonFrom(r io.Reader) (Index, error) {
 	var idx Index
 	return idx, json.NewDecoder(r).Decode(&idx)
 }
@@ -39,5 +39,5 @@ func Load(filename string) (Index, error) {
 		return Index{}, e
 	}
 
-	return MarshalJsonFrom(r)
+	return UnmarshalJsonFrom(r)
 }
