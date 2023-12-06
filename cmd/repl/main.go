@@ -45,7 +45,7 @@ func main() {
 		}
 
 		for _, ri := range rs.Results {
-			fmt.Println(ri)
+			fmt.Println(ri.Sig)
 		}
 	}
 }

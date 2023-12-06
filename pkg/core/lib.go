@@ -43,7 +43,7 @@ func (this *FuncDef) ToResult(sim Similarity) ResultItem {
 	return ResultItem{
 		Similarity: sim,
 		// TODO: use proper sig
-		Sig:     this.Name,
+		Sig:     this.Signature(),
 		Summary: this.Summary,
 		Link:    this.Link,
 	}
