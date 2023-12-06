@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	indexDestFileName := flag.String("o", "./index.json", "path to save index file")
+	indexDestFileName := flag.String("o", "./index.gob", "path to save index file")
 
 	flag.Parse()
 
