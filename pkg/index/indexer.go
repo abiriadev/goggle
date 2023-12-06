@@ -71,12 +71,12 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 			}
 
 			index.FuncItems = append(index.FuncItems, core.FuncDef{
-				Pkg:     d.ImportPath,
+				Package: d.ImportPath,
 				Name:    f.Name,
 				Args:    args,
-				Ret:     v.Name,
+				Return:  v.Name,
 				Summary: f.Doc,
-				DocLink: fmt.Sprintf("https://pkg.go.dev/%s#%s", docLinkRoute, f.Name),
+				Link:    fmt.Sprintf("https://pkg.go.dev/%s#%s", docLinkRoute, f.Name),
 			})
 		}
 	}

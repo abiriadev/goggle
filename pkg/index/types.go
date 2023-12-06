@@ -7,10 +7,11 @@ import (
 
 // The central struct for all kind of indexing and searching
 type Index struct {
-	FuncItems   []core.FuncDef
-	MethodItems []core.MethodDef
+	FuncItems   []core.FuncDef   `json:"func"`
+	MethodItems []core.MethodDef `json:"met"`
 }
 
+// Create an empty index
 func NewIndex() Index {
 	return Index{make([]core.FuncDef, 0), make([]core.MethodDef, 0)}
 }
