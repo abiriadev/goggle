@@ -7,6 +7,10 @@ import (
 	"github.com/samber/mo"
 )
 
+type ToSignature interface {
+	Signature() string
+}
+
 type FuncDef struct {
 	Package string   `json:"pkg"`
 	Name    string   `json:"name"`
@@ -52,6 +56,10 @@ type ResultItem struct {
 	Sig        string
 	Summary    string
 	Link       string
+}
+
+func (ri *ResultItem) Signature() string {
+	return ri.Sig
 }
 
 type ResultSet struct {
