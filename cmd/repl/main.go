@@ -22,7 +22,12 @@ func pathArg() string {
 func main() {
 	f := pathArg()
 
-	goggle, err := goggle.Load(f)
+	goggle, err := goggle.NewGoggle(goggle.Config{Limit: 10})
+	if err != nil {
+		panic(err)
+	}
+
+	err = goggle.Load(f)
 	if err != nil {
 		panic(err)
 	}
