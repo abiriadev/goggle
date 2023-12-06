@@ -22,7 +22,15 @@ func EvaluateMethod(item *core.MethodDef, query query.Query) core.Similarity {
 	return core.Different
 }
 
-func Query(index *index.Index, query query.Query) core.ResultSet {
+func limitSlice[T any](slice []T, limit int) []T {
+	if len(slice) < limit {
+		return slice
+	} else {
+		return slice[:limit]
+	}
+}
+
+func Query(index *index.Index, query query.Query, limit int) core.ResultSet {
 	rs := core.NewResultSet()
 
 	for _, item := range index.FuncItems {
@@ -34,6 +42,8 @@ func Query(index *index.Index, query query.Query) core.ResultSet {
 	slices.SortFunc(rs.Results, func(a, b core.ResultItem) int {
 		return cmp.Compare(a.Similarity, b.Similarity)
 	})
+
+	rs.Results = limitSlice(rs.Results, limit)
 
 	return rs
 }

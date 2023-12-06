@@ -19,25 +19,36 @@ type ResultItem = core.ResultItem
 // Similarity represents how the results are accurate
 type Similarity = core.Similarity
 
+// Configuration for Goggle
+type Config struct {
+	Limit int
+}
+
 // The main entry to the Goggle search engine
 type Goggle struct {
 	index index.Index
 	qp    participle.Parser[query.Query]
+	cfg   Config
 }
 
-// Initialize new Goggle search engine by loading index from the path
-func Load(indexFile string) (Goggle, error) {
-	index, err := index.Load(indexFile)
-	if err != nil {
-		return Goggle{}, err
-	}
-
+func NewGoggle(cfg Config) (Goggle, error) {
 	qp, err := query.QueryParser()
 	if err != nil {
 		return Goggle{}, err
 	}
 
-	return Goggle{index, *qp}, nil
+	return Goggle{index.NewIndex(), *qp, cfg}, nil
+}
+
+// Initialize new Goggle search engine by loading index from the path
+func (g *Goggle) Load(indexFile string) error {
+	index, err := index.Load(indexFile)
+	if err != nil {
+		return err
+	}
+
+	g.index = index
+	return nil
 }
 
 // Query Goggle with a given query
@@ -47,5 +58,5 @@ func (g *Goggle) Query(query string) (core.ResultSet, error) {
 		return core.ResultSet{}, err
 	}
 
-	return eval.Query(&g.index, *q), nil
+	return eval.Query(&g.index, *q, g.cfg.Limit), nil
 }
