@@ -45,3 +45,7 @@ type ResultItem struct {
 type ResultSet struct {
 	Results []ResultItem
 }
+
+func NewResultSet() ResultSet {
+	return ResultSet{make([]ResultItem, 0)}
+}
