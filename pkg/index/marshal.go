@@ -1,6 +1,7 @@
 package index
 
 import (
+	"encoding/gob"
 	"encoding/json"
 	"io"
 	"os"
@@ -40,4 +41,33 @@ func LoadJson(filename string) (Index, error) {
 	}
 
 	return UnmarshalJsonFrom(r)
+}
+
+func (index *Index) Save(filename string) error {
+	w, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+
+	gob.Register(Index{})
+
+	enc := gob.NewEncoder(w)
+
+	return enc.Encode(index)
+}
+
+func Load(filename string) (Index, error) {
+	r, err := os.Open(filename)
+	if err != nil {
+		return Index{}, err
+	}
+
+	gob.Register(Index{})
+
+	dec := gob.NewDecoder(r)
+
+	var index Index
+	err = dec.Decode(&index)
+
+	return index, err
 }
