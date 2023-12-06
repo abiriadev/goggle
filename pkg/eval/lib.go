@@ -17,7 +17,10 @@ func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
 	return core.Different
 }
 
-func EvaluateMethod(item *core.MethodDef, query query.Query) core.Similarity
+// TODO: complete this function later
+func EvaluateMethod(item *core.MethodDef, query query.Query) core.Similarity {
+	return core.Different
+}
 
 func Query(index *index.Index, query query.Query) core.ResultSet {
 	rs := core.NewResultSet()
