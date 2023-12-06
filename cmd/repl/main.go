@@ -4,9 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/abiriadev/goggle/pkg/eval"
-	"github.com/abiriadev/goggle/pkg/index"
-	"github.com/abiriadev/goggle/pkg/query"
+	"github.com/abiriadev/goggle/pkg/goggle"
 	"github.com/chzyer/readline"
 )
 
@@ -24,37 +22,30 @@ func pathArg() string {
 func main() {
 	f := pathArg()
 
-	index, e := index.Load(f)
-	if e != nil {
-		panic(e)
+	goggle, err := goggle.Load(f)
+	if err != nil {
+		panic(err)
 	}
 
-	rl, e := readline.New("λ ")
-	if e != nil {
-		panic(e)
+	rl, err := readline.New("λ ")
+	if err != nil {
+		panic(err)
 	}
 	defer rl.Close()
 
 	for {
-		line, e := rl.Readline()
-		if e != nil {
+		line, err := rl.Readline()
+		if err != nil {
 			break
 		}
 
-		qs := line
-
-		qp, e := query.QueryParser()
-		if e != nil {
-			panic(e)
+		rs, err := goggle.Query(line)
+		if err != nil {
+			fmt.Println(err)
 		}
 
-		q, e := qp.ParseString("", qs)
-		if e != nil {
-			fmt.Println(e)
-		}
-
-		for _, fd := range eval.Query(*q) {
-			fmt.Println(fd.String())
+		for _, ri := range rs.Results {
+			fmt.Println(ri)
 		}
 	}
 }
