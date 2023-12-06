@@ -13,7 +13,7 @@ func pathArg() string {
 	f := flag.Arg(0)
 
 	if f == "" {
-		return "index.json"
+		return "index.gob"
 	}
 
 	return f

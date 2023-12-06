@@ -11,7 +11,7 @@ import (
 )
 
 func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
-	if query.Ret == item.Ret && reflect.DeepEqual(query.Args, item.Args) {
+	if query.Ret == item.Return && reflect.DeepEqual(query.Args, item.Args) {
 		return core.Equivalent
 	}
 	return core.Different
