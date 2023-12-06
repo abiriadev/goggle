@@ -8,12 +8,12 @@ import (
 )
 
 type FuncDef struct {
-	Pkg     string
-	Name    string
-	Args    []string
-	Ret     string
-	Summary string
-	DocLink string
+	Package string   `json:"pkg"`
+	Name    string   `json:"name"`
+	Args    []string `json:"args"`
+	Return  string   `json:"ret"`
+	Summary string   `json:"sum"`
+	Link    string   `json:"link"`
 }
 
 func (this *FuncDef) Signature() string {
@@ -26,13 +26,13 @@ func (this *FuncDef) Signature() string {
 }
 
 type MethodDef struct {
-	Pkg      string
-	Name     string
-	Receiver string
-	Args     []string
-	Ret      string
-	Summary  string
-	DocLink  string
+	Package  string   `json:"pkg"`
+	Name     string   `json:"name"`
+	Receiver string   `json:"recv"`
+	Args     []string `json:"args"`
+	Return   string   `json:"ret"`
+	Summary  string   `json:"sum"`
+	Link     string   `json:"link"`
 }
 
 func (this *FuncDef) ToResult(sim Similarity) ResultItem {
@@ -41,7 +41,7 @@ func (this *FuncDef) ToResult(sim Similarity) ResultItem {
 		// TODO: use proper sig
 		Sig:     this.Name,
 		Summary: this.Summary,
-		Link:    this.DocLink,
+		Link:    this.Link,
 	}
 }
 
