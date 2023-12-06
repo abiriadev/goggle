@@ -1,9 +1,6 @@
 package index
 
 import (
-	"html/template"
-	"strings"
-
 	"github.com/abiriadev/goggle/pkg/core"
 	"github.com/repeale/fp-go"
 )
@@ -15,7 +12,7 @@ type Index struct {
 }
 
 func NewIndex() Index {
-	return Index{make([]FuncDef, 0), make([]MethodDef, 0)}
+	return Index{make([]core.FuncDef, 0), make([]core.MethodDef, 0)}
 }
 
 func ConcatSliceTo[T any](slices [][]T, dest []T) []T {
@@ -39,23 +36,14 @@ func ConcatSlice[T any](slices [][]T) []T {
 func MergeIndex(idxes []Index) Index {
 	return Index{
 		FuncItems: ConcatSlice(
-			fp.Map(func(idx Index) []FuncDef {
+			fp.Map(func(idx Index) []core.FuncDef {
 				return idx.FuncItems
 			})(idxes),
 		),
 		MethodItems: ConcatSlice(
-			fp.Map(func(idx Index) []MethodDef {
+			fp.Map(func(idx Index) []core.MethodDef {
 				return idx.MethodItems
 			})(idxes),
 		),
 	}
-}
-
-func (this *FuncDef) String() string {
-	t := template.Must(
-		template.New("").Parse(`func {{.Name}}({{range .Args}}{{.}}, {{end}}) {{.Ret}}`),
-	)
-	var buf strings.Builder
-	t.Execute(&buf, this)
-	return buf.String()
 }

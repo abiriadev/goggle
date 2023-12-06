@@ -1,6 +1,9 @@
 package core
 
 import (
+	"strings"
+	"text/template"
+
 	"github.com/samber/mo"
 )
 
@@ -11,6 +14,15 @@ type FuncDef struct {
 	Ret     string
 	Summary string
 	DocLink string
+}
+
+func (this *FuncDef) Signature() string {
+	t := template.Must(
+		template.New("").Parse(`func {{.Name}}({{range .Args}}{{.}}, {{end}}) {{.Ret}}`),
+	)
+	var buf strings.Builder
+	t.Execute(&buf, this)
+	return buf.String()
 }
 
 type MethodDef struct {
