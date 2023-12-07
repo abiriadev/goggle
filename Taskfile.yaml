@@ -7,3 +7,18 @@ tasks:
       GOOS: js
     cmds:
       - go build -o ./dist/syntaxck.wasm ./wasm/syntaxck
+    sources:
+      - ./wasm/syntaxck/*.go
+    generates:
+      - ./dist/syntaxck.wasm
+  syntaxck-tiny:
+    cmds:
+      - tinygo build -o ./dist/syntaxck-tiny.wasm -target wasm ./wasm/syntaxck
+      - wasm-opt ./dist/syntaxck-tiny.wasm --enable-bulk-memory -Oz -o dist/syntaxck-tiny.pack.wasm
+      - brotli ./dist/syntaxck-tiny.pack.wasm
+    sources:
+      - ./wasm/syntaxck/*.go
+    generates:
+      - ./dist/syntaxck-tiny.wasm
+      - ./dist/syntaxck-tiny.pack.wasm
+      - ./dist/syntaxck-tiny.pack.wasm.br
