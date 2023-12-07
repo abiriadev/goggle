@@ -4,7 +4,7 @@ import { loadWasm } from './wasm'
 import {
 	Autocomplete,
 	TextField,
-	createTheme,
+	useTheme,
 } from '@mui/material'
 import './syntaxck.d.ts'
 import { ResultItem, query } from './goggle.ts'
@@ -15,6 +15,7 @@ function App() {
 		Array<ResultItem>
 	>([])
 	const [inp, setInp] = useState('')
+	const theme = useTheme()
 
 	useEffect(() => {
 		;(async () => {
@@ -40,7 +41,13 @@ function App() {
 
 	return (
 		<main>
-			<h1 style={{ color: '#007d9c' }}>Goggle</h1>
+			<h1
+				style={{
+					color: theme.palette.primary.main,
+				}}
+			>
+				Goggle
+			</h1>
 			<Autocomplete
 				sx={{ width: 600 }}
 				options={resultSet}
