@@ -35,14 +35,14 @@ func (this *FuncDef) ToResult(sim Similarity) ResultItem {
 type Item = mo.Either[FuncDef, MethodDef]
 
 type ResultItem struct {
-	Similarity Similarity
-	Sig        string
-	Summary    string
-	Link       string
+	Similarity Similarity `json:"sim"`
+	Sig        string     `json:"sig"`
+	Summary    string     `json:"summary"`
+	Link       string     `json:"link"`
 }
 
 type ResultSet struct {
-	Results []ResultItem
+	Results []ResultItem `json:"items"`
 }
 
 func NewResultSet() ResultSet {
