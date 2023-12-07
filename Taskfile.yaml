@@ -22,3 +22,6 @@ tasks:
       - ./dist/syntaxck-tiny.wasm
       - ./dist/syntaxck-tiny.pack.wasm
       - ./dist/syntaxck-tiny.pack.wasm.br
+  cp-wasm-exec:
+    cmds:
+      - cp $(go env GOROOT)/misc/wasm/wasm_exec.js ./frontend/src/
