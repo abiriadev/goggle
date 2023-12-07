@@ -1,10 +1,11 @@
 import './wasm_exec.js'
-import './syntaxck.d.ts'
+
+const syntaxckPath = '/syntaxck.pack.wasm'
 
 export const loadWasm = async (): Promise<void> => {
 	const goWasm = new window.Go()
 	const result = await WebAssembly.instantiateStreaming(
-		fetch('/syntaxck.pack.wasm'),
+		fetch(syntaxckPath),
 		goWasm.importObject,
 	)
 	goWasm.run(result.instance)
