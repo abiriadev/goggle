@@ -24,9 +24,13 @@ function App() {
 		;(async () => {
 			console.log('input change:', inp)
 
-			const rs = await query(inp)
+			try {
+				const rs = await query(inp)
 
-			setResultSet(rs.items)
+				setResultSet(rs.items)
+			} catch (e) {
+				console.error(e)
+			}
 		})()
 	}, [inp])
 
@@ -37,6 +41,9 @@ function App() {
 				options={resultSet}
 				renderInput={p => <TextField {...p} />}
 				onInputChange={(_, i) => setInp(i)}
+				getOptionLabel={o =>
+					typeof o === 'string' ? o : o.sig
+				}
 			/>
 		</main>
 	)

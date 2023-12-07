@@ -14,7 +14,7 @@ const host = '/api'
 export const query = async (
 	query: string,
 ): Promise<ResultSet> => {
-	const raw = await fetch(`${host}/query`, {
+	const raw = await fetch(`${host}/search`, {
 		method: 'POST',
 		body: JSON.stringify({ q: query }),
 	})
