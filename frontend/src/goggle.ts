@@ -1,5 +1,5 @@
 export interface ResultSet {
-	items: Array<ResultSet>
+	items: Array<ResultItem>
 }
 
 export interface ResultItem {
