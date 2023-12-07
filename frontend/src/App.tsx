@@ -38,6 +38,7 @@ function App() {
 		<main>
 			<h1>Goggle</h1>
 			<Autocomplete
+				sx={{ width: 600 }}
 				options={resultSet}
 				renderInput={p => <TextField {...p} />}
 				onInputChange={(_, i) => setInp(i)}
