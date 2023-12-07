@@ -27,5 +27,5 @@ lerna-debug.log*
 /ignored
 /index.json
 /index.gob
-.task
-.br
+*.task
+*.br
