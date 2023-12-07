@@ -68,3 +68,13 @@ func (s string) int
 -   [ ] Syntax hightlighting for search result
 
 \*? \_? ?? any? ? ...?
+
+## This is really awwwesome!! How can I help?
+
+There are many ways to support and contribute to the ongoing maintenance and improvement of Goggle. Any support is greatly appreciated!
+
+-   **Spread the world.** Share Goggle with your co-workers, students, and community so that they can find it useful as well!
+-   **Report bugs.** If you encounter any unexpected behavior or runtime panics, please open an issue to report and document them.
+-   **Make your document cleaner.** Although Goggle can find items without documentation, it doesn't have a power to generate intuitive identifiers and descriptive summaries. So it's a good idea to document you package thoroughly to enhance developer experience.
+-   **Suggest better idea.** Currently, Goggle's approximate search doesn't support structural edit-distance, and there are still a lot of missing features. Your suggestions for more accurate and efficient implementations are always welcome.
+-   **Build creative tools on top of Goggle.** Goggle currently supports web search and REPL, but the possibilities for its application are limitless. Ideas like a vscode extension, LSP autocompletion, etc., could significantly expand its ecosystem.
