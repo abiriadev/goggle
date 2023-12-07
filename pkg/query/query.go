@@ -12,3 +12,7 @@ func QueryParser() (*participle.Parser[Query], error) {
 	p, err := participle.Build[Query]()
 	return p, err
 }
+
+func QueryParserUnsafe() *participle.Parser[Query] {
+	return participle.MustBuild[Query]()
+}
