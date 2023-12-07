@@ -1,8 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
+import { loadWasm } from './wasm'
 
 function App() {
-	const [count, setCount] = useState(0)
+	const [wasmLoad, setWasmLoad] = useState(false)
+
+	useEffect(() => {
+		;(async () => {
+			await loadWasm()
+			setWasmLoad(true)
+		})()
+	}, [])
 
 	return <>hello</>
 }

@@ -41,7 +41,7 @@ tasks:
   syntaxck-tiny-move:
     deps: [syntaxck-tiny-compress]
     cmds:
-      - cp ./dist/syntaxck-tiny.pack.wasm.br ./frontend/assets/syntaxck-tiny.pack.wasm.br
+      - cp ./dist/syntaxck-tiny.pack.wasm.br ./frontend/src/assets/syntaxck-tiny.pack.wasm.br
     sources:
       - ./dist/syntaxck-tiny.pack.wasm.br
     generates:
