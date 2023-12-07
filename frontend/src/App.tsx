@@ -3,7 +3,7 @@ import './App.css'
 import { loadWasm } from './wasm'
 import { Autocomplete, TextField } from '@mui/material'
 import './syntaxck.d.ts'
-import { query } from './goggle.ts'
+import { ResultItem, query } from './goggle.ts'
 
 function App() {
 	const [wasmLoad, setWasmLoad] = useState(false)
