@@ -1,0 +1,9 @@
+version: 3
+
+tasks:
+  syntaxck:
+    env:
+      GOARCH: wasm
+      GOOS: js
+    cmds:
+      - go build -o ./dist/syntaxck.wasm ./wasm/syntaxck
