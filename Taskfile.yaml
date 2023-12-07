@@ -1,6 +1,9 @@
 version: 3
 
 tasks:
+  dist:
+    cmds:
+      - mkdir -p ./dist
   syntaxck:
     env:
       GOARCH: wasm
@@ -12,16 +15,37 @@ tasks:
     generates:
       - ./dist/syntaxck.wasm
   syntaxck-tiny:
+    deps: [dist]
     cmds:
       - tinygo build -o ./dist/syntaxck-tiny.wasm -target wasm ./wasm/syntaxck
-      - wasm-opt ./dist/syntaxck-tiny.wasm --enable-bulk-memory -Oz -o dist/syntaxck-tiny.pack.wasm
-      - brotli ./dist/syntaxck-tiny.pack.wasm
     sources:
       - ./wasm/syntaxck/*.go
     generates:
       - ./dist/syntaxck-tiny.wasm
+  syntaxck-tiny-pack:
+    deps: [syntaxck-tiny]
+    cmds:
+      - wasm-opt ./dist/syntaxck-tiny.wasm --enable-bulk-memory -Oz -o ./dist/syntaxck-tiny.pack.wasm
+    sources:
+      - ./dist/syntaxck-tiny.wasm
+    generates:
       - ./dist/syntaxck-tiny.pack.wasm
+  syntaxck-tiny-compress:
+    deps: [syntaxck-tiny-pack]
+    cmds:
+      - brotli ./dist/syntaxck-tiny.pack.wasm
+    sources:
+      - ./dist/syntaxck-tiny.pack.wasm
+    generates:
       - ./dist/syntaxck-tiny.pack.wasm.br
+  syntaxck-tiny-move:
+    deps: [syntaxck-tiny-compress]
+    cmds:
+      - cp ./dist/syntaxck-tiny.pack.wasm.br ./frontend/assets/syntaxck-tiny.pack.wasm.br
+    sources:
+      - ./dist/syntaxck-tiny.pack.wasm.br
+    generates:
+      - ./frontend/assets/syntaxck-tiny.pack.wasm.br
   cp-wasm-exec:
     cmds:
       - cp $(go env GOROOT)/misc/wasm/wasm_exec.js ./frontend/src/

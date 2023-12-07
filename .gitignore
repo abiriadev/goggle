@@ -28,3 +28,4 @@ lerna-debug.log*
 /index.json
 /index.gob
 .task
+.br
