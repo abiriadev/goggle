@@ -47,19 +47,23 @@ func EvaluateArgs(args []core.Arg, query query.Query) core.Similarity {
 		return core.Different
 	}
 
-	sarr := make([]core.Similarity, len(args))
+	// TODO: qp does not support argument names yet
+	return core.Equivalent
 
-	for i, arg := range query.Args {
-		if args[i].Type != arg {
-			return core.Different
-		}
-
-		sarr = append(sarr,
-			EvaluateName(arg, args[i].Name),
-		)
-	}
-
-	return AccSim(sarr)
+	// sarr := make([]core.Similarity, len(args))
+	//
+	// for i, arg := range query.Args {
+	// 	if args[i].Type != arg {
+	// 		return core.Different
+	// 	}
+	// 	e := EvaluateName(arg, args[i].Name)
+	// 	sarr = append(
+	// 		sarr,
+	// 		e,
+	// 	)
+	// }
+	//
+	// return AccSim(sarr)
 }
 
 func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
@@ -69,6 +73,7 @@ func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
 		namesSim := EvaluateName(item.Name, query.Name)
 
 		return CombSim(argsSim, namesSim)
+		// return namesSim
 	}
 	return core.Different
 }
