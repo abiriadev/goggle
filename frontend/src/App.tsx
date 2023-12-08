@@ -3,8 +3,7 @@ import './App.css'
 import { loadWasm } from './wasm'
 import {
 	Autocomplete,
-	Box,
-	Grid,
+	Link,
 	TextField,
 	Typography,
 	useTheme,
@@ -56,7 +55,11 @@ function App() {
 				renderInput={p => <TextField {...p} />}
 				renderOption={(p, o) => (
 					<li {...p}>
-						<a href={o.link} target="_blank">
+						<Link
+							href={o.link}
+							underline="none"
+							target="_blank"
+						>
 							{o.sig}
 							<Typography
 								paragraph
@@ -69,7 +72,7 @@ function App() {
 							>
 								{o.summary}
 							</Typography>
-						</a>
+						</Link>
 					</li>
 				)}
 				onInputChange={(_, i) => setInp(i)}
