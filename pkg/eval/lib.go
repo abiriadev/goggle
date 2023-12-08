@@ -36,7 +36,7 @@ func EvaluateArgs(args []core.Arg, query query.Query) core.Similarity {
 		return core.Different
 	}
 
-	sarr := make([]core.Similarity, 0)
+	sarr := make([]core.Similarity, len(args))
 
 	for i, arg := range query.Args {
 		if args[i].Type != arg {
@@ -49,6 +49,8 @@ func EvaluateArgs(args []core.Arg, query query.Query) core.Similarity {
 			),
 		)
 	}
+
+	return AccSim(sarr)
 }
 
 func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
