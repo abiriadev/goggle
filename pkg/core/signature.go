@@ -14,7 +14,7 @@ func args(args []string) string {
 }
 
 func (f *FuncDef) Signature() string {
-	return fmt.Sprintf("func %s%s %s", f.Name, args(f.Args), f.Return)
+	return fmt.Sprintf("func %s.%s%s %s", f.PackageMame, f.Name, args(f.Args), f.Return)
 }
 
 func (ri *ResultItem) Signature() string {
