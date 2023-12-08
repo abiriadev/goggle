@@ -8,6 +8,7 @@ require (
 )
 
 require (
+	github.com/hbollon/go-edlib v1.6.0 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/repeale/fp-go v0.11.1 // indirect
