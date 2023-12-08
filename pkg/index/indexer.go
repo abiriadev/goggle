@@ -70,8 +70,6 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 				docLinkRoute = strings.TrimPrefix(d.ImportPath, "vendor/")
 			}
 
-			fmt.Println(pkg.Name)
-
 			index.FuncItems = append(index.FuncItems, core.FuncDef{
 				Package:     d.ImportPath,
 				PackageMame: pkg.Name,

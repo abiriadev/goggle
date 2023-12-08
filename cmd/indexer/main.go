@@ -7,7 +7,12 @@ import (
 )
 
 func main() {
-	indexDestFileName := flag.String("o", "./index.gob", "path to save index file")
+	indexDestFileName := flag.String("o", "", "path to save index file")
+	format := flag.String("f", "gob", "index format")
+
+	if *format != "json" && *format != "gob" {
+		panic("invalid format: only `json` and `gob` are supported")
+	}
 
 	flag.Parse()
 
@@ -21,5 +26,21 @@ func main() {
 		panic(err)
 	}
 
-	index.Save(*indexDestFileName)
+	if *format == "json" {
+		if *indexDestFileName == "" {
+			*indexDestFileName = "index.json"
+		}
+
+		err = index.SaveJson(*indexDestFileName)
+	} else {
+		if *indexDestFileName == "" {
+			*indexDestFileName = "index.gob"
+		}
+
+		err = index.Save(*indexDestFileName)
+	}
+
+	if err != nil {
+		panic(err)
+	}
 }
