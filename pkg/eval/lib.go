@@ -22,7 +22,7 @@ func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
 				panic(err)
 			}
 
-			return core.Similarity(d)
+			return core.Similarity(1 - d)
 		}
 	}
 	return core.Different
