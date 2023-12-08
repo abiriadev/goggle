@@ -3,10 +3,20 @@ package index
 import (
 	"encoding/json"
 	"io"
+	"net/http"
 )
 
 func ResolveFullIndex() {
 
+}
+
+func FetchModuleIndex() (io.Reader, error) {
+	res, err := http.Get("https://index.golang.org/index")
+	if err != nil {
+		return nil, err
+	}
+
+	return res.Body, nil
 }
 
 type ModuleIndex struct {
