@@ -70,13 +70,16 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 				docLinkRoute = strings.TrimPrefix(d.ImportPath, "vendor/")
 			}
 
+			fmt.Println(pkg.Name)
+
 			index.FuncItems = append(index.FuncItems, core.FuncDef{
-				Package: d.ImportPath,
-				Name:    f.Name,
-				Args:    args,
-				Return:  v.Name,
-				Summary: d.Synopsis(f.Doc),
-				Link:    fmt.Sprintf("https://pkg.go.dev/%s#%s", docLinkRoute, f.Name),
+				Package:     d.ImportPath,
+				PackageMame: pkg.Name,
+				Name:        f.Name,
+				Args:        args,
+				Return:      v.Name,
+				Summary:     d.Synopsis(f.Doc),
+				Link:        fmt.Sprintf("https://pkg.go.dev/%s#%s", docLinkRoute, f.Name),
 			})
 		}
 	}
