@@ -1,4 +1,4 @@
-import { Typography, useTheme } from '@mui/material'
+import { Typography } from '@mui/material'
 import { Bar } from './Bar.tsx'
 import { Search } from './Search.tsx'
 
@@ -10,19 +10,22 @@ import { Search } from './Search.tsx'
 // }
 
 function App() {
-	const theme = useTheme()
-
 	return (
 		<>
 			<Bar />
 			<main>
-				<h1
-					style={{
-						color: theme.palette.primary.main,
+				<Typography
+					variant="h1"
+					sx={{
+						color: 'primary.main',
+						fontFamily:
+							'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;',
+						fontWeight: 'bold',
+						fontSize: '3.2em',
 					}}
 				>
 					Goggle
-				</h1>
+				</Typography>
 				<Search />
 			</main>
 		</>
