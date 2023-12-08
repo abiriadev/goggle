@@ -66,9 +66,9 @@ func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
 	if query.Ret == item.Return {
 		argsSim := EvaluateArgs(item.Args, query)
 
-		if argsSim == core.Different {
-			return argsSim
-		}
+		namesSim := EvaluateName(item.Name, query.Name)
+
+		return CombSim(argsSim, namesSim)
 	}
 	return core.Different
 }
