@@ -30,6 +30,10 @@ func AccSim(sims []core.Similarity) core.Similarity {
 	return acc / core.Similarity(len(sims))
 }
 
+func CombSim(a, b core.Similarity) core.Similarity {
+	return (a + b) / 2
+}
+
 func EvaluateName(ident string, query string) core.Similarity {
 	if query == "" {
 		return core.Equivalent
