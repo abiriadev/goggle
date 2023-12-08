@@ -13,9 +13,10 @@ const LIMIT = 2000
 
 func ResolveFullIndex() ([]ModuleIndex, error) {
 	midxes := make([]ModuleIndex, 0)
+	var inc *time.Time
 
 	for {
-		r, err := FetchModuleIndex()
+		r, err := FetchModuleIndex(inc, LIMIT)
 		if err != nil {
 			return nil, err
 		}
@@ -28,9 +29,11 @@ func ResolveFullIndex() ([]ModuleIndex, error) {
 		midxes = append(midxes, m...)
 
 		if len(m) != 0 {
-			IncTimeStamp(m[len(m)])
+			*inc = IncTimeStamp(m[len(m)])
 		}
 	}
+
+	return midxes, nil
 }
 
 func IncTimeStamp(midxes ModuleIndex) time.Time {
