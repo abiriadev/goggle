@@ -2,7 +2,6 @@ package eval
 
 import (
 	"cmp"
-	"reflect"
 	"slices"
 
 	"github.com/abiriadev/goggle/pkg/core"
@@ -53,12 +52,20 @@ func EvaluateArgs(args []core.Arg, query query.Query) core.Similarity {
 	return AccSim(sarr)
 }
 
+func EvaluateName(ident string, query string) core.Similarity {
+	if query == "" {
+		return core.Equivalent
+	} else {
+		return Lev(query, ident)
+	}
+}
+
 func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
-	if query.Ret == item.Return && reflect.DeepEqual(query.Args, item.Args) {
-		if query.Name == "" {
-			return core.Equivalent
-		} else {
-			return Lev(query.Name, item.Name)
+	if query.Ret == item.Return {
+		argsSim := EvaluateArgs(item.Args, query)
+
+		if argsSim == core.Different {
+			return argsSim
 		}
 	}
 	return core.Different
