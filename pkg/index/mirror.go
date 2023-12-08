@@ -4,9 +4,14 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"time"
 )
 
 func ResolveFullIndex() {
+
+}
+
+func IncTimeStamp(midxes []ModuleIndex) {
 
 }
 
@@ -22,7 +27,7 @@ func FetchModuleIndex() (io.Reader, error) {
 type ModuleIndex struct {
 	Path      string
 	Version   string
-	Timestamp string
+	Timestamp time.Time
 }
 
 func ParseModuleIndex(r io.Reader) ([]ModuleIndex, error) {
