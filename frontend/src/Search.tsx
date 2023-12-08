@@ -50,6 +50,17 @@ export const Search = () => {
 			getOptionLabel={o =>
 				typeof o === 'string' ? o : o.sig
 			}
+			componentsProps={{
+				popper: {
+					modifiers: [
+						{ name: 'flip', enabled: false },
+						{
+							name: 'preventOverflow',
+							enabled: false,
+						},
+					],
+				},
+			}}
 			onInputChange={(_, i) => setInp(i)}
 			onChange={(_, o, r) => {
 				if (r === 'selectOption') {

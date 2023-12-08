@@ -10,7 +10,7 @@ function App() {
 				direction="column"
 				alignItems="center"
 				spacing={3}
-				marginTop={20}
+				marginTop={18}
 			>
 				<Typography
 					variant="h1"
