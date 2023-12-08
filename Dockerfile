@@ -19,8 +19,6 @@ FROM alpine:3.18 as runner
 
 WORKDIR /app
 
-USER nonroot:nonroot
-
 COPY --from=indexer /app/index.gob /app/goggle ./
 
 EXPOSE 6099
