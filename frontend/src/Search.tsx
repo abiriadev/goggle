@@ -77,7 +77,9 @@ export const Search = () => {
 						underline="none"
 						target="_blank"
 					>
-						{o.sig}
+						<Typography color="primary.light">
+							{o.sig}
+						</Typography>
 						<Typography
 							paragraph
 							noWrap
