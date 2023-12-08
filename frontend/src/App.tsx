@@ -52,6 +52,10 @@ function App() {
 				freeSolo
 				sx={{ width: 600 }}
 				options={resultSet}
+				filterOptions={_ => _}
+				getOptionLabel={o =>
+					typeof o === 'string' ? o : o.sig
+				}
 				renderInput={p => <TextField {...p} />}
 				renderOption={(p, o) => (
 					<li {...p}>
@@ -76,14 +80,16 @@ function App() {
 					</li>
 				)}
 				onInputChange={(_, i) => setInp(i)}
-				getOptionLabel={o =>
-					typeof o === 'string' ? o : o.sig
-				}
-				onChange={(_, v, r) => {
+				onChange={(_, o, r) => {
 					if (r === 'selectOption') {
-						// r.
+						window.open(
+							typeof o === 'string'
+								? o
+								: o?.link,
+							'_blank',
+						)
 					}
-					console.log('value:', v, 'reason:', r)
+					console.log('value:', o, 'reason:', r)
 				}}
 			/>
 		</main>
