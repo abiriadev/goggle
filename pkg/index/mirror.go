@@ -20,13 +20,19 @@ func ParseModuleIndex(r io.Reader) ([]ModuleIndex, error) {
 
 	midxes := make([]ModuleIndex, 0)
 
-	var v ModuleIndex
-	err := dec.Decode(&v)
-	if err != nil {
-		return nil, nil
-	}
+	for {
+		var v ModuleIndex
+		err := dec.Decode(&v)
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
 
-	midxes = append(midxes, v)
+			return nil, nil
+		}
+
+		midxes = append(midxes, v)
+	}
 
 	return midxes, nil
 }
