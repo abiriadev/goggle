@@ -55,9 +55,9 @@ func (s string) int
 
 -   [ ] Generics
     -   [ ] Constraints
--   [ ] Portable index file
+-   [x] Portable index file
 -   [ ] Incremental search
--   [ ] Link to pkg.go.dev
+-   [x] Link to pkg.go.dev
 -   [ ] Brief description
 -   [ ] Query
     -   [ ] Method
