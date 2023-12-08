@@ -50,13 +50,37 @@ function App() {
 			</h1>
 			<Autocomplete
 				freeSolo
-				sx={{ width: 600 }}
+				sx={{
+					width: 600,
+				}}
 				options={resultSet}
 				filterOptions={_ => _}
 				getOptionLabel={o =>
 					typeof o === 'string' ? o : o.sig
 				}
-				renderInput={p => <TextField {...p} />}
+				renderInput={p => (
+					<TextField
+						sx={{
+							'& .MuiOutlinedInput-root': {
+								'& > fieldset': {
+									borderColor:
+										theme.palette
+											.primary.main,
+								},
+							},
+							'& .MuiOutlinedInput-root:hover':
+								{
+									'& > fieldset': {
+										borderColor:
+											theme.palette
+												.primary
+												.main,
+									},
+								},
+						}}
+						{...p}
+					/>
+				)}
 				renderOption={(p, o) => (
 					<li {...p}>
 						<Link
