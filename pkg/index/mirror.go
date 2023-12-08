@@ -2,11 +2,14 @@ package index
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
+	"strconv"
 	"time"
 )
+
+// maximum index server limit
+const LIMIT = 2000
 
 func ResolveFullIndex() ([]ModuleIndex, error) {
 	midxes := make([]ModuleIndex, 0)
@@ -35,12 +38,23 @@ func IncTimeStamp(midxes ModuleIndex) time.Time {
 }
 
 func FetchModuleIndex(since time.Time, limit int) (io.Reader, error) {
-	res, err := http.Get(
-		fmt.Sprintf(
-			"https://index.golang.org/index?since=%s&limit=%d",
-			since.Format(time.RFC3339),
-		),
-	)
+	req, err := http.NewRequest("GET", "https://index.golang.org/index", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	q := req.URL.Query()
+	q.Add("limit", strconv.Itoa(limit))
+	q.Add("since", since.Format(time.RFC3339))
+	req.URL.RawQuery = q.Encode()
+
+	if err != nil {
+		return nil, err
+	}
+
+	client := &http.Client{}
+
+	res, err := client.Do(req)
 	if err != nil {
 		return nil, err
 	}
