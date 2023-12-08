@@ -14,13 +14,10 @@ function App() {
 			>
 				<Typography
 					variant="h1"
-					sx={{
-						color: 'primary.main',
-						fontFamily:
-							'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;',
-						fontWeight: 'bold',
-						fontSize: '3.2em',
-					}}
+					color="primary.main"
+					fontFamily="Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;"
+					fontWeight="bold"
+					fontSize="3.2em"
 				>
 					Goggle
 				</Typography>
