@@ -30,6 +30,14 @@ func AccSim(sims []core.Similarity) core.Similarity {
 	return acc / core.Similarity(len(sims))
 }
 
+func EvaluateName(ident string, query string) core.Similarity {
+	if query == "" {
+		return core.Equivalent
+	} else {
+		return Lev(query, ident)
+	}
+}
+
 func EvaluateArgs(args []core.Arg, query query.Query) core.Similarity {
 	if len(query.Args) != len(args) {
 		return core.Different
@@ -43,21 +51,11 @@ func EvaluateArgs(args []core.Arg, query query.Query) core.Similarity {
 		}
 
 		sarr = append(sarr,
-			core.Similarity(
-				Lev(arg, args[i].Name),
-			),
+			EvaluateName(arg, args[i].Name),
 		)
 	}
 
 	return AccSim(sarr)
-}
-
-func EvaluateName(ident string, query string) core.Similarity {
-	if query == "" {
-		return core.Equivalent
-	} else {
-		return Lev(query, ident)
-	}
 }
 
 func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
