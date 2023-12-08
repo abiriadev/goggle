@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './App.css'
 import { loadWasm } from './wasm'
 import {
 	Autocomplete,
