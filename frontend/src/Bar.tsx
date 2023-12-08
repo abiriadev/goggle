@@ -7,7 +7,7 @@ export const Bar = () => (
 		enableColorOnDark
 		color="primary"
 	>
-		<Toolbar>
+		<Toolbar variant="dense">
 			<Typography flexGrow={1}>News</Typography>
 			<GitHubIcon />
 		</Toolbar>
