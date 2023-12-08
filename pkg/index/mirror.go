@@ -11,6 +11,7 @@ import (
 
 // maximum index server limit
 const LIMIT = 2000
+const INDEX_MAXIMUM_TAIL = 5
 
 func ResolveFullIndex() ([]ModuleIndex, error) {
 	midxes := make([]ModuleIndex, 0)
@@ -29,7 +30,7 @@ func ResolveFullIndex() ([]ModuleIndex, error) {
 
 		midxes = append(midxes, m...)
 
-		if len(m) != 0 {
+		if len(m) >= INDEX_MAXIMUM_TAIL {
 			t := IncTimeStamp(m[len(m)-1])
 			inc = &t
 
