@@ -7,8 +7,26 @@ import (
 	"time"
 )
 
-func ResolveFullIndex() {
+func ResolveFullIndex() ([]ModuleIndex, error) {
+	midxes := make([]ModuleIndex, 0)
 
+	for {
+		r, err := FetchModuleIndex()
+		if err != nil {
+			return nil, err
+		}
+
+		m, err := ParseModuleIndex(r)
+		if err != nil {
+			return nil, err
+		}
+
+		midxes = append(midxes, m...)
+
+		if len(m) != 0 {
+			IncTimeStamp(m[len(m)])
+		}
+	}
 }
 
 func IncTimeStamp(midxes ModuleIndex) time.Time {
