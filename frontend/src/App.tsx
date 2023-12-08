@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Container, Stack, Typography } from '@mui/material'
 import { Bar } from './Bar.tsx'
 import { Search } from './Search.tsx'
 
@@ -6,12 +6,11 @@ function App() {
 	return (
 		<>
 			<Bar />
-			<main
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-					flexDirection: 'column',
-				}}
+			<Stack
+				direction="column"
+				alignItems="center"
+				spacing={3}
+				marginTop={20}
 			>
 				<Typography
 					variant="h1"
@@ -26,7 +25,7 @@ function App() {
 					Goggle
 				</Typography>
 				<Search />
-			</main>
+			</Stack>
 		</>
 	)
 }
