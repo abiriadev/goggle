@@ -1,4 +1,5 @@
 import { AppBar, Toolbar, Typography } from '@mui/material'
+import GitHubIcon from '@mui/icons-material/GitHub'
 
 export const Bar = () => (
 	<AppBar
@@ -8,7 +9,7 @@ export const Bar = () => (
 	>
 		<Toolbar>
 			<Typography flexGrow={1}>News</Typography>
-			<Typography>GitHub</Typography>
+			<GitHubIcon />
 		</Toolbar>
 	</AppBar>
 )
