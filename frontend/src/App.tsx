@@ -13,7 +13,13 @@ function App() {
 	return (
 		<>
 			<Bar />
-			<main>
+			<main
+				style={{
+					display: 'flex',
+					justifyContent: 'center',
+					flexDirection: 'column',
+				}}
+			>
 				<Typography
 					variant="h1"
 					sx={{
