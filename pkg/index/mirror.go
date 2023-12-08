@@ -2,6 +2,7 @@ package index
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"strconv"
@@ -29,7 +30,9 @@ func ResolveFullIndex() ([]ModuleIndex, error) {
 		midxes = append(midxes, m...)
 
 		if len(m) != 0 {
-			*inc = IncTimeStamp(m[len(m)])
+			*inc = IncTimeStamp(m[len(m)-1])
+
+			fmt.Println(*inc)
 		} else {
 			break
 		}
