@@ -3,14 +3,18 @@ package core
 import (
 	"fmt"
 	"strings"
+
+	"github.com/repeale/fp-go"
 )
 
 type ToSignature interface {
 	Signature() string
 }
 
-func args(args []string) string {
-	return fmt.Sprintf("(%s)", strings.Join(args, ", "))
+func args(args []Arg) string {
+	return fmt.Sprintf("(%s)", strings.Join(fp.Map(func(arg Arg) string {
+		return fmt.Sprintf("%s %s", arg.Name, arg.Type)
+	})(args), ", "))
 }
 
 func (f *FuncDef) Signature() string {

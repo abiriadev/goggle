@@ -63,9 +63,14 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 
 					a1 := a[0]
 
+					t, isIdent := arg.Type.(*ast.Ident)
+					if !isIdent {
+						continue
+					}
+
 					args = append(args, core.Arg{
 						Name: a1.Name,
-						Type: arg.Type.(*ast.Ident).Name,
+						Type: t.Name,
 					})
 				}
 			}
