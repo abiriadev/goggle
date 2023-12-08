@@ -2,16 +2,15 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { loadWasm } from './wasm'
 import {
-	AppBar,
 	Autocomplete,
 	Link,
 	TextField,
-	Toolbar,
 	Typography,
 	useTheme,
 } from '@mui/material'
 import './syntaxck.d.ts'
 import { ResultItem, query } from './goggle.ts'
+import { Bar } from './Bar.tsx'
 
 function App() {
 	const [wasmLoad, setWasmLoad] = useState(false)
@@ -43,11 +42,7 @@ function App() {
 
 	return (
 		<>
-			<AppBar position="static">
-				<Toolbar>
-					<Typography>News</Typography>
-				</Toolbar>
-			</AppBar>
+			<Bar />
 			<main>
 				<h1
 					style={{
