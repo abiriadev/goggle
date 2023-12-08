@@ -2,6 +2,7 @@ package index
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"time"
@@ -33,8 +34,13 @@ func IncTimeStamp(midxes ModuleIndex) time.Time {
 	return midxes.Timestamp.Add(time.Nanosecond)
 }
 
-func FetchModuleIndex() (io.Reader, error) {
-	res, err := http.Get("https://index.golang.org/index")
+func FetchModuleIndex(since time.Time, limit int) (io.Reader, error) {
+	res, err := http.Get(
+		fmt.Sprintf(
+			"https://index.golang.org/index?since=%s&limit=%d",
+			since.Format(time.RFC3339),
+		),
+	)
 	if err != nil {
 		return nil, err
 	}
