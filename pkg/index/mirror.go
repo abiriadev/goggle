@@ -30,6 +30,8 @@ func ResolveFullIndex() ([]ModuleIndex, error) {
 
 		if len(m) != 0 {
 			*inc = IncTimeStamp(m[len(m)])
+		} else {
+			break
 		}
 	}
 
