@@ -11,6 +11,16 @@ import (
 	"github.com/hbollon/go-edlib"
 )
 
+func Lev(a, b string) core.Similarity {
+	s, err := edlib.StringsSimilarity(a, b, edlib.Levenshtein)
+	if err != nil {
+		// unreachable error
+		panic(err)
+	}
+
+	return core.Similarity(1 - s)
+}
+
 func EvaluateArgs(args []core.Arg, query query.Query) core.Similarity {
 	if len(query.Args) != len(args) {
 		return core.Different
@@ -36,13 +46,7 @@ func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
 		if query.Name == "" {
 			return core.Equivalent
 		} else {
-			d, err := edlib.StringsSimilarity(query.Name, item.Name, edlib.Levenshtein)
-			if err != nil {
-				// unreachable error
-				panic(err)
-			}
-
-			return core.Similarity(1 - d)
+			return Lev(query.Name, item.Name)
 		}
 	}
 	return core.Different
