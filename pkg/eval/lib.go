@@ -8,11 +8,22 @@ import (
 	"github.com/abiriadev/goggle/pkg/core"
 	"github.com/abiriadev/goggle/pkg/index"
 	"github.com/abiriadev/goggle/pkg/query"
+	"github.com/hbollon/go-edlib"
 )
 
 func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
 	if query.Ret == item.Return && reflect.DeepEqual(query.Args, item.Args) {
-		return core.Equivalent
+		if query.Name == "" {
+			return core.Equivalent
+		} else {
+			d, err := edlib.StringsSimilarity(query.Name, item.Name, edlib.Levenshtein)
+			if err != nil {
+				// unreachable error
+				panic(err)
+			}
+
+			return core.Similarity(d)
+		}
 	}
 	return core.Different
 }
