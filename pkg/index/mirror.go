@@ -15,7 +15,7 @@ type ModuleIndex struct {
 	Timestamp string
 }
 
-func ParseIndex(r io.Reader) ([]ModuleIndex, error) {
+func ParseModuleIndex(r io.Reader) ([]ModuleIndex, error) {
 	dec := json.NewDecoder(r)
 
 	midxes := make([]ModuleIndex, 0)
