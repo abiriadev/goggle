@@ -51,7 +51,7 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 
 			args := make([]string, 0)
 
-			analyzeFuncDecl(f.Decl)
+			// analyzeFuncDecl(f.Decl)
 
 			pl := f.Decl.Type.Params.List
 			for _, arg := range pl {
