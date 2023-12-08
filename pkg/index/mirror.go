@@ -30,7 +30,8 @@ func ResolveFullIndex() ([]ModuleIndex, error) {
 		midxes = append(midxes, m...)
 
 		if len(m) != 0 {
-			*inc = IncTimeStamp(m[len(m)-1])
+			t := IncTimeStamp(m[len(m)-1])
+			inc = &t
 
 			fmt.Println(*inc)
 		} else {
