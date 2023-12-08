@@ -57,8 +57,16 @@ function App() {
 				renderOption={(p, o) => (
 					<li {...p}>
 						<a href={o.link} target="_blank">
-							<Box>{o.sig}</Box>
-							<Typography variant="caption">
+							{o.sig}
+							<Typography
+								paragraph
+								noWrap
+								variant="caption"
+								color="#bbbbbb"
+								sx={{
+									fontWeight: 300,
+								}}
+							>
 								{o.summary}
 							</Typography>
 						</a>
