@@ -11,6 +11,26 @@ import (
 	"github.com/hbollon/go-edlib"
 )
 
+func EvaluateArgs(args []core.Arg, query query.Query) core.Similarity {
+	if len(query.Args) != len(args) {
+		return core.Different
+	}
+
+	sarr := make([]core.Similarity, 0)
+
+	for i, arg := range query.Args {
+		if args[i].Type != arg {
+			return core.Different
+		}
+
+		sarr = append(sarr,
+			core.Similarity(
+				Lev(arg, args[i].Name),
+			),
+		)
+	}
+}
+
 func EvaluateFunc(item *core.FuncDef, query query.Query) core.Similarity {
 	if query.Ret == item.Return && reflect.DeepEqual(query.Args, item.Args) {
 		if query.Name == "" {
