@@ -11,8 +11,8 @@ func ResolveFullIndex() {
 
 }
 
-func IncTimeStamp(midxes []ModuleIndex) {
-
+func IncTimeStamp(midxes ModuleIndex) time.Time {
+	return midxes.Timestamp.Add(time.Nanosecond)
 }
 
 func FetchModuleIndex() (io.Reader, error) {
