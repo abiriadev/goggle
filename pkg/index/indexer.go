@@ -49,19 +49,24 @@ func (indexer Indexer) IndexPackages(pkgsToIndex []string) (Index, error) {
 				continue
 			}
 
-			args := make([]string, 0)
+			args := make([]core.Arg, 0)
 
 			// analyzeFuncDecl(f.Decl)
 
 			pl := f.Decl.Type.Params.List
 			for _, arg := range pl {
 				if arg != nil {
-					v, b := r.List[0].Type.(*ast.Ident)
-					if !b {
+					a := arg.Names
+					if len(a) != 1 {
 						continue
 					}
 
-					args = append(args, v.Name)
+					a1 := a[0]
+
+					args = append(args, core.Arg{
+						Name: a1.Name,
+						Type: arg.Type.(*ast.Ident).Name,
+					})
 				}
 			}
 
