@@ -2,13 +2,6 @@ import { Typography } from '@mui/material'
 import { Bar } from './Bar.tsx'
 import { Search } from './Search.tsx'
 
-// #root {
-// 	max-width: 1280px;
-// 	margin: 0 auto;
-// 	padding: 2rem;
-// 	text-align: center;
-// }
-
 function App() {
 	return (
 		<>
@@ -16,7 +9,7 @@ function App() {
 			<main
 				style={{
 					display: 'flex',
-					justifyContent: 'center',
+					alignItems: 'center',
 					flexDirection: 'column',
 				}}
 			>
