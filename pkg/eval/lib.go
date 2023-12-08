@@ -21,6 +21,16 @@ func Lev(a, b string) core.Similarity {
 	return core.Similarity(1 - s)
 }
 
+func AccSim(sims []core.Similarity) core.Similarity {
+	acc := core.Equivalent
+
+	for _, sim := range sims {
+		acc += sim
+	}
+
+	return acc / core.Similarity(len(sims))
+}
+
 func EvaluateArgs(args []core.Arg, query query.Query) core.Similarity {
 	if len(query.Args) != len(args) {
 		return core.Different
