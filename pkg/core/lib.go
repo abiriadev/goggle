@@ -5,22 +5,24 @@ import (
 )
 
 type FuncDef struct {
-	Package string   `json:"pkg"`
-	Name    string   `json:"name"`
-	Args    []string `json:"args"`
-	Return  string   `json:"ret"`
-	Summary string   `json:"sum"`
-	Link    string   `json:"link"`
+	Package     string   `json:"pkg"`
+	PackageMame string   `json:"pkg_name"`
+	Name        string   `json:"name"`
+	Args        []string `json:"args"`
+	Return      string   `json:"ret"`
+	Summary     string   `json:"sum"`
+	Link        string   `json:"link"`
 }
 
 type MethodDef struct {
-	Package  string   `json:"pkg"`
-	Name     string   `json:"name"`
-	Receiver string   `json:"recv"`
-	Args     []string `json:"args"`
-	Return   string   `json:"ret"`
-	Summary  string   `json:"sum"`
-	Link     string   `json:"link"`
+	Package     string   `json:"pkg"`
+	PackageMame string   `json:"pkg_name"`
+	Name        string   `json:"name"`
+	Receiver    string   `json:"recv"`
+	Args        []string `json:"args"`
+	Return      string   `json:"ret"`
+	Summary     string   `json:"sum"`
+	Link        string   `json:"link"`
 }
 
 func (this *FuncDef) ToResult(sim Similarity) ResultItem {
