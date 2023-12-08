@@ -2,20 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import {
-	ThemeProvider,
-	createTheme,
-} from '@mui/material/styles'
-
-const theme = createTheme({
-	palette: {
-		mode: 'dark',
-		primary: {
-			main: '#007d9c',
-			light: '#50b7e0',
-		},
-	},
-})
+import { ThemeProvider } from '@mui/material/styles'
+import { theme } from './theme.ts'
 
 ReactDOM.createRoot(
 	document.getElementById('root')!,
