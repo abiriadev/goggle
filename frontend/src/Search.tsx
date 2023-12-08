@@ -69,7 +69,6 @@ export const Search = () => {
 						'_blank',
 					)
 				}
-				console.log('value:', o, 'reason:', r)
 			}}
 			renderInput={p => (
 				<TextField

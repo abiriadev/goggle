@@ -1,4 +1,4 @@
-import { Container, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { Bar } from './Bar.tsx'
 import { Search } from './Search.tsx'
 
