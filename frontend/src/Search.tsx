@@ -41,6 +41,7 @@ export const Search = () => {
 	return (
 		<Autocomplete
 			freeSolo
+			disableCloseOnSelect
 			sx={{
 				width: 600,
 			}}
