@@ -37,15 +37,17 @@ func IncTimeStamp(midxes ModuleIndex) time.Time {
 	return midxes.Timestamp.Add(time.Nanosecond)
 }
 
-func FetchModuleIndex(since time.Time, limit int) (io.Reader, error) {
+func FetchModuleIndex(since *time.Time, limit int) (io.Reader, error) {
 	req, err := http.NewRequest("GET", "https://index.golang.org/index", nil)
 	if err != nil {
 		return nil, err
 	}
 
 	q := req.URL.Query()
+	if since != nil {
+		q.Add("since", since.Format(time.RFC3339))
+	}
 	q.Add("limit", strconv.Itoa(limit))
-	q.Add("since", since.Format(time.RFC3339))
 	req.URL.RawQuery = q.Encode()
 
 	if err != nil {
