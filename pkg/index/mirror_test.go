@@ -6,11 +6,15 @@ import (
 )
 
 func TestModuleIndexParser(t *testing.T) {
-	raw := "{}\n{}"
+	raw := "{}\n{}\n{}"
 
-	_, err := ParseModuleIndex(strings.NewReader(raw))
+	v, err := ParseModuleIndex(strings.NewReader(raw))
 
 	if err != nil {
 		t.Fatal(err)
+	}
+
+	if len(v) != 3 {
+		t.Fatal()
 	}
 }
