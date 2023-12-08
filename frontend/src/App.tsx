@@ -3,7 +3,10 @@ import './App.css'
 import { loadWasm } from './wasm'
 import {
 	Autocomplete,
+	Box,
+	Grid,
 	TextField,
+	Typography,
 	useTheme,
 } from '@mui/material'
 import './syntaxck.d.ts'
@@ -27,8 +30,6 @@ function App() {
 	useEffect(() => {
 		if (!(wasmLoad && window.syntaxck(inp))) return
 		;(async () => {
-			console.log('input change:', inp)
-
 			try {
 				const rs = await query(inp)
 
@@ -49,13 +50,30 @@ function App() {
 				Goggle
 			</h1>
 			<Autocomplete
+				freeSolo
 				sx={{ width: 600 }}
 				options={resultSet}
 				renderInput={p => <TextField {...p} />}
+				renderOption={(p, o) => (
+					<li {...p}>
+						<a href={o.link} target="_blank">
+							<Box>{o.sig}</Box>
+							<Typography variant="caption">
+								{o.summary}
+							</Typography>
+						</a>
+					</li>
+				)}
 				onInputChange={(_, i) => setInp(i)}
 				getOptionLabel={o =>
 					typeof o === 'string' ? o : o.sig
 				}
+				onChange={(_, v, r) => {
+					if (r === 'selectOption') {
+						// r.
+					}
+					console.log('value:', v, 'reason:', r)
+				}}
 			/>
 		</main>
 	)
