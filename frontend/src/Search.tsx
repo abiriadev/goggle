@@ -50,6 +50,16 @@ export const Search = () => {
 			getOptionLabel={o =>
 				typeof o === 'string' ? o : o.sig
 			}
+			onInputChange={(_, i) => setInp(i)}
+			onChange={(_, o, r) => {
+				if (r === 'selectOption') {
+					window.open(
+						typeof o === 'string' ? o : o?.link,
+						'_blank',
+					)
+				}
+				console.log('value:', o, 'reason:', r)
+			}}
 			renderInput={p => (
 				<TextField
 					sx={{
@@ -95,16 +105,6 @@ export const Search = () => {
 					</Link>
 				</li>
 			)}
-			onInputChange={(_, i) => setInp(i)}
-			onChange={(_, o, r) => {
-				if (r === 'selectOption') {
-					window.open(
-						typeof o === 'string' ? o : o?.link,
-						'_blank',
-					)
-				}
-				console.log('value:', o, 'reason:', r)
-			}}
 		/>
 	)
 }
