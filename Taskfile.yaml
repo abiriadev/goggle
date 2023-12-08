@@ -4,6 +4,11 @@ tasks:
   dist:
     cmds:
       - mkdir -p ./dist
+  wasm-exec:
+    cmds:
+      - cp $(go env GOROOT)/misc/wasm/wasm_exec.js ./frontend/src/wasm_exec.js
+    generates:
+      - ./frontend/src/wasm_exec.js
   syntaxck:
     env:
       GOARCH: wasm

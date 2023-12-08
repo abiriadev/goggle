@@ -30,3 +30,4 @@ lerna-debug.log*
 *.task
 *.br
 *.wasm
+/frontend/src/wasm_exec.js
