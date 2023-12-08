@@ -13,7 +13,13 @@ export const Bar = () => (
 		color="primary"
 	>
 		<Toolbar variant="dense">
-			<Typography flexGrow={1}>Goggle</Typography>
+			<Typography
+				flexGrow={1}
+				fontWeight={500}
+				variant="h6"
+			>
+				Goggle
+			</Typography>
 			<Link
 				href="https://github.com/abiriadev/goggle"
 				color="inherit"
