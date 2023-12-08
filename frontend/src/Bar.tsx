@@ -7,7 +7,8 @@ export const Bar = () => (
 		color="primary"
 	>
 		<Toolbar>
-			<Typography>News</Typography>
+			<Typography flexGrow={1}>News</Typography>
+			<Typography>GitHub</Typography>
 		</Toolbar>
 	</AppBar>
 )
