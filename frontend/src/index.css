@@ -19,9 +19,6 @@ a {
 	color: inherit;
 	text-decoration: inherit;
 }
-/* a:hover { */
-/* 	color: #535bf2; */
-/* } */
 
 body {
 	margin: 0;
@@ -29,6 +26,13 @@ body {
 	place-items: center;
 	min-width: 320px;
 	min-height: 100vh;
+}
+
+#root {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
 }
 
 h1 {
