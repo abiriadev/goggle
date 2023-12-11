@@ -16,7 +16,7 @@ tasks:
     cmds:
       - go build -o ./dist/syntaxck.wasm ./wasm/syntaxck
       - wasm-opt ./dist/syntaxck.wasm --enable-bulk-memory -Oz -o ./dist/syntaxck.pack.wasm
-      - cp ./dist/syntaxck.pack.wasm ./frontend/public/
+      - cp ./dist/syntaxck.pack.wasm ./frontend/public/syntaxck.pack.wasm
     sources:
       - ./wasm/syntaxck/*.go
     generates:
