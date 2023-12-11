@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Compile WASM
-        run: task wasm-exec sytaxck
+        run: task wasm-exec syntaxck
       - name: Build frontend
         run: pnpm build
         working-directory: frontend
