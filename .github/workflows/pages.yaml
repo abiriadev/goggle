@@ -24,6 +24,10 @@ jobs:
         with:
           node-version-file: .node-version
           cache: pnpm
+      - name: Setup Go environment
+        uses: actions/setup-go@v5.0.0
+        with:
+          go-version-file: go.mod
       - name: Install dependencies
         run: pnpm install
       - name: Compile WASM
