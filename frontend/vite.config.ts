@@ -5,7 +5,8 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig(({ mode }) => ({
 	plugins: [react()],
 
-	base: mode === 'development' ? '/' : 'goggle',
+	base: mode === 'development' ? './' : 'goggle',
+
 	server: {
 		proxy: {
 			'/api': {
@@ -15,4 +16,6 @@ export default defineConfig(({ mode }) => ({
 			},
 		},
 	},
+
+	assetsInclude: ['**/*.wasm'],
 }))
