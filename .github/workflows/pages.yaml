@@ -30,6 +30,8 @@ jobs:
           go-version-file: go.mod
       - name: Setup Binaryen
         uses: Aandreba/setup-binaryen@v1.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Install dependencies
         run: pnpm install
       - name: Compile WASM
