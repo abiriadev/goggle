@@ -16,11 +16,10 @@ tasks:
     cmds:
       - go build -o ./dist/syntaxck.wasm ./wasm/syntaxck
       - wasm-opt ./dist/syntaxck.wasm --enable-bulk-memory -Oz -o ./dist/syntaxck.pack.wasm
-      - mkdir -p ./frontend/public
-      - cp ./dist/syntaxck.pack.wasm ./frontend/public/syntaxck.pack.wasm
+      - cp ./dist/syntaxck.pack.wasm ./frontend/src/assets/syntaxck.pack.wasm
     sources:
       - ./wasm/syntaxck/*.go
     generates:
       - ./dist/syntaxck.wasm
       - ./dist/syntaxck.pack.wasm
-      - ./frontend/public/syntaxck.pack.wasm
+      - ./frontend/src/assets/syntaxck.pack.wasm
