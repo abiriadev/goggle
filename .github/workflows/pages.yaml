@@ -24,7 +24,7 @@ jobs:
         run: pnpm install
       - name: Build frontend
         run: pnpm build
-        working_directory: frontend
+        working-directory: frontend
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
@@ -40,7 +40,6 @@ jobs:
     environment:
       name: GitHub Pages
       url: ${{ steps.deployment.outputs.page_url }}
-      runs-on: ubuntu-latest
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
