@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install Task
+        uses: arduino/setup-task@v1
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.4.0
         with:
@@ -24,6 +26,8 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install
+      - name: Compile WASM
+        run: task wasm-exec sytaxck
       - name: Build frontend
         run: pnpm build
         working-directory: frontend
