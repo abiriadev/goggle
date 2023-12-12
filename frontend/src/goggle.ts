@@ -9,9 +9,10 @@ export interface ResultItem {
 	link: string
 }
 
-const host = import.meta.env.MODE === 'production'
-	? import.meta.env.VITE_EXTERN_ENDPOINT
-	: '/api'
+const host =
+	import.meta.env.MODE === 'production'
+		? import.meta.env.VITE_EXTERN_ENDPOINT
+		: '/api'
 
 console.log('host', host)
 console.log('mode', import.meta.env)
@@ -23,6 +24,12 @@ export const query = async (
 		method: 'POST',
 		body: JSON.stringify({ q: query }),
 	})
+
+	console.table(raw)
+
+	if (!raw.ok) {
+		throw new Error('response was not successful')
+	}
 
 	return await raw.json()
 }
