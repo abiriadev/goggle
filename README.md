@@ -1,7 +1,13 @@
 <h1 align="center">Goggle 🥽</h1>
 <p align="center">Search your api through types, with speed </p>
 
+## Overview
+
 Type-directed search engine like [hoogle](https://github.com/ndmitchell/hoogle) but for [Go](https://go.dev/)
+
+## Try Goggle now!
+
+Try Goggle for yourself! You can now visit [here](https://abiriadev.github.io/goggle/) to see Goggle in action.
 
 ## Query syntax overview
 
