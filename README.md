@@ -9,6 +9,10 @@ Type-directed search engine like [hoogle](https://github.com/ndmitchell/hoogle) 
 
 Try Goggle for yourself! You can now visit [here](https://abiriadev.github.io/goggle/) to see Goggle in action.
 
+## Demo
+
+![](./assets/demo.png)
+
 ## Query
 
 You can type query to search and filter results.
