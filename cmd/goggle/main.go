@@ -38,6 +38,8 @@ func (qh *QueryHandler) Query(query string) (goggle.ResultSet, error) {
 func (qh *QueryHandler) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 	slog.Info("Request", "method", r.Method, "path", r.URL)
 
+	rw.Header().Set("Access-Control-Allow-Origin", "*")
+
 	var req QueryRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
