@@ -9,52 +9,46 @@ Type-directed search engine like [hoogle](https://github.com/ndmitchell/hoogle) 
 
 Try Goggle for yourself! You can now visit [here](https://abiriadev.github.io/goggle/) to see Goggle in action.
 
-## Query syntax overview
+## Query
 
-```ebnf
-Type = TypeName [ TypeArgs ] | TypeLit | "(" Type ")" .
-TypeName = identifier | QualifiedIdent .
-TypeArgs = "[" TypeList [ ", "] "]" .
-TypeList = Type { "," Type } .
-TypeLit = ArrayType | StructType | PointerType | FunctionType | InterfaceType | SliceType | MapType | ChannelType
+You can type query to search and filter results.
 
-ArrayType = "[" ArrayLength "]" ElementType .
-ArrayLength = Expression .
-ElementType = Type .
-
-SliceType = "[" "]" ElementType .
-
-FunctionType = "func" Signature .
-Signature = Parameters [ Result ]
-Result = Parameters | Type .
-Parameters = "(" [ ParameterList [ "," ] ] ")" .
-ParameterList = ParameterDecl { "," ParameterDecl } .
-ParameterDecl = [ IdentifierList ] [ "... " ] Type .
-
-Query = [ "func" ] [ identifier ] Signature .
-```
+The most simplest form is just Go's standard function definition.
 
 ```go
-// normal function definition
 func length(s string) int
+```
 
-// omit function name
+But we can omit a function name, to retrieve results whose name does not match with `length`.
+
+```go
 func (s string) int
+```
 
-// omit `func` keyword
+We can omit a `func` keyword too.
+
+```go
 (s string) int
+```
 
-// multiline parameters
-(s string, flag int) int
+Finally, we can omit argument names.
 
-// multiple return values
-(s string) (int, error)
+```go
+(string) int
+```
 
-// wildcard
-(_) bool
+### Query syntax definition
 
-// generics
-[T](s T) int
+```ebnf
+Type = Primitives | SliceType | PointerType | identifier .
+Primitives = "bool" | Int | UInt | "float32" | "float64" | "complex64" | "complex128" .
+Int = "int" | "int8" | "int16" | "int32" | "int64" .
+UInt = "uint" | "uint8" | "uint16" | "uint32" | "uint64" | "uintptr" .
+
+SliceType = "[" "]" Type .
+
+Parameters = "(" [ Type { "," Type } ] ")" .
+Query = [ "func" ] [ identifier ] Parameters [ Type ] .
 ```
 
 ## TODO
@@ -72,8 +66,6 @@ func (s string) int
     -   [ ] Spread syntax
 -   [ ] Levenshtein distance
 -   [ ] Syntax hightlighting for search result
-
-\*? \_? ?? any? ? ...?
 
 ## This is really awwwesome!! How can I help?
 
