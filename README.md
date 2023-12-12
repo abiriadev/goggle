@@ -3,17 +3,17 @@
 
 ## Overview
 
-Type-directed search engine like [hoogle](https://github.com/ndmitchell/hoogle) but for [Go](https://go.dev/)
+Goggle is a type-directed search engine like [hoogle](https://github.com/ndmitchell/hoogle) but for [Go](https://go.dev/)
 
-## Try Goggle now!
+## :tada: Try Goggle now!
 
 Try Goggle for yourself! You can now visit [here](https://abiriadev.github.io/goggle/) to see Goggle in action.
 
-## Demo
+## :camera: Demo
 
 ![](./assets/demo.png)
 
-## Query
+## :mag: Query
 
 You can type query to search and filter results.
 
@@ -55,7 +55,7 @@ Parameters = "(" [ Type { "," Type } ] ")" .
 Query = [ "func" ] [ identifier ] Parameters [ Type ] .
 ```
 
-## TODO
+## :memo: TODO
 
 -   [ ] Index
     -   [x] Portable index file
@@ -90,7 +90,7 @@ Query = [ "func" ] [ identifier ] Parameters [ Type ] .
     -   [ ] vscode extension
     -   [ ] neovim LSP support?
 
-## This is really awwwesome!! How can I help?
+## :grinning: This is really awwwesome!! How can I help?
 
 There are many ways to support and contribute to the ongoing maintenance and improvement of Goggle. Any support is greatly appreciated!
 
