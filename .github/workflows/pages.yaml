@@ -41,6 +41,7 @@ jobs:
         working-directory: frontend
         env:
           NODE_ENV: production
+          VITE_EXTERN_ENDPOINT: ${{ vars.EXTERN_ENDPOINT }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact

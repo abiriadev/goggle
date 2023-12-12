@@ -32,3 +32,5 @@ lerna-debug.log*
 *.wasm
 /frontend/src/wasm_exec.js
 /mirror.json
+
+*.env
