@@ -53,19 +53,38 @@ Query = [ "func" ] [ identifier ] Parameters [ Type ] .
 
 ## TODO
 
--   [ ] Generics
-    -   [ ] Constraints
--   [x] Portable index file
+-   [ ] Index
+    -   [x] Portable index file
+    -   [ ] Index popular packages
 -   [ ] Incremental search
--   [x] Link to pkg.go.dev
--   [ ] Brief description
+-   [ ] Frontend
+    -   [ ] Standalone result view
+    -   [x] Link to pkg.go.dev
+    -   [x] Brief description
+    -   [ ] Syntax hightlighting for search result
+    -   [ ] Use dedicated search bar component
 -   [ ] Query
+    -   [ ] Compound types
+        -   [ ] Array
+        -   [ ] Slice
+        -   [ ] Pointer type
+        -   [ ] Inline struct type
+        -   [ ] Interface resolution
     -   [ ] Method
     -   [ ] Multiple return
     -   [ ] Parameter collaping
     -   [ ] Spread syntax
--   [ ] Levenshtein distance
--   [ ] Syntax hightlighting for search result
+    -   [ ] Generics
+        -   [ ] Constraints
+-   [x] Levenshtein distance
+    -   [ ] Argument-level similarity comparison
+    -   [ ] Hoogle-like structured edit distance
+        -   [ ] Subtype polymorphic edit distance
+-   [x] GHA CD automation
+-   [ ] External tools
+    -   [x] REPL
+    -   [ ] vscode extension
+    -   [ ] neovim LSP support?
 
 ## This is really awwwesome!! How can I help?
 
